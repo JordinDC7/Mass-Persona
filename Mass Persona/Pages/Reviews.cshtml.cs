@@ -12,18 +12,77 @@ namespace Mass_Persona.Pages
 {
     public class ReviewsModel : PageModel
     {
-        private readonly Mass_Persona.Data.ReviewContext _context;
+        private readonly ReviewContext _context;
 
-        public ReviewsModel(Mass_Persona.Data.ReviewContext context)
+        public ReviewsModel(ReviewContext context)
         {
             _context = context;
         }
 
-        public IList<Review> Review { get;set; } = default!;
+        public IList<Review> Review { get; set; } = new List<Review>();
+
+        // Filtering properties
+        [BindProperty(SupportsGet = true)]
+        public string SearchCategory { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int? SearchRating { get; set; }
+
+        // Sorting properties
+        [BindProperty(SupportsGet = true)]
+        public string SortOrder { get; set; }
+
+        // Pagination properties
+        public int TotalReviews { get; set; }
+        public int PageSize { get; set; } = 5;
+        [BindProperty(SupportsGet = true)]
+        public int PageNumber { get; set; } = 1;
 
         public async Task OnGetAsync()
         {
-            Review = await _context.reviews.ToListAsync();
+            // query
+            var reviewsQuery = _context.reviews.AsQueryable();
+
+            // filter by category
+            if (!string.IsNullOrEmpty(SearchCategory))
+            {
+                reviewsQuery = reviewsQuery.Where(r => r.Category == SearchCategory);
+            }
+
+            // filter by rating 
+            if (SearchRating.HasValue)
+            {
+                reviewsQuery = reviewsQuery.Where(r => r.Rating == SearchRating.Value);
+            }
+
+            // sort logic
+            switch (SortOrder)
+            {
+                case "category_asc":
+                    reviewsQuery = reviewsQuery.OrderBy(r => r.Category);
+                    break;
+                case "category_desc":
+                    reviewsQuery = reviewsQuery.OrderByDescending(r => r.Category);
+                    break;
+                case "rating_asc":
+                    reviewsQuery = reviewsQuery.OrderBy(r => r.Rating);
+                    break;
+                case "rating_desc":
+                    reviewsQuery = reviewsQuery.OrderByDescending(r => r.Rating);
+                    break;
+                default:
+                    reviewsQuery = reviewsQuery.OrderBy(r => r.DateReviewed);  // default sorting by the date
+                    break;
+            }
+
+            // initial count
+            TotalReviews = await reviewsQuery.CountAsync();
+
+            // pagination logic
+            Review = await reviewsQuery
+                .Skip((PageNumber - 1) * PageSize)
+                .Take(PageSize)
+                .ToListAsync();
         }
     }
 }

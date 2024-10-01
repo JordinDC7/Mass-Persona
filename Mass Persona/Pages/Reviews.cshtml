@@ -11,27 +11,58 @@
             <h2>Reviews</h2>
         </div>
         <div class="card-body">
+            <!-- Create new review button -->
             <p>
                 <a asp-page="Create" class="btn btn-success mb-3">Create New</a>
             </p>
+
+            <!-- Filters -->
+            <form method="get" class="mb-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="SearchCategory">Filter by Category</label>
+                        <select asp-for="SearchCategory" class="form-control">
+                            <option value="">All</option>
+                            <option value="Movie">Movie</option>
+                            <option value="Book">Book</option>
+                            <option value="Game">Game</option>
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="SearchRating">Filter by Rating</label>
+                        <select asp-for="SearchRating" class="form-control">
+                            <option value="">All</option>
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3 align-self-end">
+                        <input type="submit" value="Filter" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+
+            <!-- Sorting -->
+            <p>
+                Sort by:
+                <a asp-page="./Reviews" asp-route-SortOrder="category_asc">Category (A-Z)</a> |
+                <a asp-page="./Reviews" asp-route-SortOrder="category_desc">Category (Z-A)</a> |
+                <a asp-page="./Reviews" asp-route-SortOrder="rating_asc">Rating (Low to High)</a> |
+                <a asp-page="./Reviews" asp-route-SortOrder="rating_desc">Rating (High to Low)</a>
+            </p>
+
+            <!-- Review List -->
             <table class="table table-striped table-bordered table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Review[0].Title)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Review[0].Category)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Review[0].ReviewText)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Review[0].Rating)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Review[0].DateReviewed)
-                        </th>
+                        <th>@Html.DisplayNameFor(model => model.Review[0].Title)</th>
+                        <th>@Html.DisplayNameFor(model => model.Review[0].Category)</th>
+                        <th>@Html.DisplayNameFor(model => model.Review[0].ReviewText)</th>
+                        <th>@Html.DisplayNameFor(model => model.Review[0].Rating)</th>
+                        <th>@Html.DisplayNameFor(model => model.Review[0].DateReviewed)</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -52,8 +83,19 @@
                     }
                 </tbody>
             </table>
+
+            <!-- Pagination Controls -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    @for (var i = 1; i <= (Model.TotalReviews + Model.PageSize - 1) / Model.PageSize; i++)
+                    {
+                        <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                            <a class="page-link" asp-page="./Reviews" asp-route-PageNumber="@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
         </div>
     </div>
 </div>
-
-

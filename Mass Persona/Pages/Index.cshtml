@@ -1,10 +1,27 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <!-- Welcome Heading -->
+            <h1 class="display-4 text-primary">Welcome to My MassPersona Coding Assessment!</h1>
+
+            <!-- Divider -->
+            <hr class="my-4" />
+
+            <!-- Reviews Link -->
+            <p class="lead">Explore reviews and discover!</p>
+            <a class="btn btn-primary btn-lg mt-3" asp-area="" asp-page="/Reviews">Go to Reviews</a>
+
+            <!-- Icon or Image (Optional) -->
+            <div class="mt-4">
+                <img src="https://jordindc7.github.io/assets/img/ProfileRounded.png" alt="Placeholder Image" class="rounded-circle shadow-sm" />
+            </div>
+        </div>
+    </div>
 </div>
+

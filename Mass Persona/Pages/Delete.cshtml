@@ -1,0 +1,58 @@
+﻿@page
+@model Mass_Persona.Pages.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-danger text-white text-center">
+            <h2>Delete Review</h2>
+        </div>
+        <div class="card-body">
+            <h4>Are you sure you want to delete this review?</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Review.Title)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Review.Title)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Review.Category)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Review.Category)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Review.ReviewText)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Review.ReviewText)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Review.Rating)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Review.Rating)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Review.DateReviewed)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Review.DateReviewed)
+                </dd>
+            </dl>
+
+            <form method="post" class="mt-4">
+                <input type="hidden" asp-for="Review.ReviewID" />
+                <div class="d-flex justify-content-between">
+                    <input type="submit" value="Delete" class="btn btn-danger w-45" />
+                    <a asp-page="./Reviews" class="btn btn-secondary w-45">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

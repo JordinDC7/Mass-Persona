@@ -1,0 +1,91 @@
+﻿@page
+@model Mass_Persona.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card" style="width: 50%;">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Create New Review</h2>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-center">
+                <h4>Review Information</h4>
+            </div>
+            <hr />
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                                <!-- Title Input -->
+                                <div class="form-group mb-3">
+                                    <label asp-for="Review.Title" class="control-label"></label>
+                                    <input asp-for="Review.Title" class="form-control" />
+                                    <span asp-validation-for="Review.Title" class="text-danger"></span>
+                                </div>
+
+                                <!-- Category Dropdown -->
+                                <div class="form-group mb-3">
+                                    <label asp-for="Review.Category" class="control-label"></label>
+                                    <select asp-for="Review.Category" class="form-control">
+                                        <option value="">-- Select Category --</option>
+                                        <option value="Movie">Movie</option>
+                                        <option value="Book">Book</option>
+                                        <option value="Game">Game</option>
+                                        <!-- Add more categories as needed -->
+                                    </select>
+                                    <span asp-validation-for="Review.Category" class="text-danger"></span>
+                                </div>
+
+                                <!-- ReviewText Textarea -->
+                                <div class="form-group mb-3">
+                                    <label asp-for="Review.ReviewText" class="control-label"></label>
+                                    <textarea asp-for="Review.ReviewText" class="form-control" rows="4"></textarea>
+                                    <span asp-validation-for="Review.ReviewText" class="text-danger"></span>
+                                </div>
+
+                                <!-- Rating Dropdown -->
+                                <div class="form-group mb-3">
+                                    <label asp-for="Review.Rating" class="control-label"></label>
+                                    <select asp-for="Review.Rating" class="form-control">
+                                        <option value="">-- Select Rating --</option>
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="Review.Rating" class="text-danger"></span>
+                                </div>
+
+                                <!-- DateReviewed Input -->
+                                <div class="form-group mb-3">
+                                    <label asp-for="Review.DateReviewed" class="control-label"></label>
+                                    <input asp-for="Review.DateReviewed" class="form-control" />
+                                    <span asp-validation-for="Review.DateReviewed" class="text-danger"></span>
+                                </div>
+
+                                <!-- Create Button -->
+                                <div class="form-group d-flex justify-content-center">
+                                    <input type="submit" value="Create" class="btn btn-primary w-100" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Back to List Button -->
+                    <div class="d-flex justify-content-center mt-3">
+                        <a asp-page="Reviews" class="btn btn-secondary w-100">Back to List</a>
+                    </div>
+                </div>
+            </div>
+
+            @section Scripts {
+                @{
+                    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                }
+            }
