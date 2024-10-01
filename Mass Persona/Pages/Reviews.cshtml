@@ -5,56 +5,55 @@
     ViewData["Title"] = "Reviews";
 }
 
-<h1>Reviews</h1>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h2>Reviews</h2>
+        </div>
+        <div class="card-body">
+            <p>
+                <a asp-page="Create" class="btn btn-success mb-3">Create New</a>
+            </p>
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Review[0].Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Review[0].Category)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Review[0].ReviewText)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Review[0].Rating)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Review[0].DateReviewed)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Review)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Category</td>
+                            <td>@item.ReviewText</td>
+                            <td>@item.Rating</td>
+                            <td>@item.DateReviewed.ToShortDateString()</td>
+                            <td>
+                                <a asp-page="Edit" asp-route-id="@item.ReviewID" class="btn btn-warning btn-sm d-block w-100 mb-2">Edit</a>
+                                <a asp-page="Delete" asp-route-id="@item.ReviewID" class="btn btn-danger btn-sm d-block w-100">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Review[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Review[0].Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Review[0].ReviewText)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Review[0].Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Review[0].DateReviewed)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Review) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewText)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateReviewed)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ReviewID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ReviewID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ReviewID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+

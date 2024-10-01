@@ -230,3 +230,4 @@ C:\Users\jordi\source\repos\Mass Persona\Mass Persona\bin\Debug\net8.0\runtimes\
 C:\Users\jordi\source\repos\Mass Persona\Mass Persona\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\jordi\source\repos\Mass Persona\Mass Persona\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\jordi\source\repos\Mass Persona\Mass Persona\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\jordi\source\repos\Mass Persona\Mass Persona\obj\Debug\net8.0\Mass Persona.sourcelink.json

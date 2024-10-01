@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mass Persona")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f017a201bf938a1f959892a4071b9c4adef7c26")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mass Persona")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mass Persona")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
