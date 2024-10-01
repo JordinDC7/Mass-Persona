@@ -105,8 +105,7 @@ The application follows a **MVC-like architecture** using **Razor Pages** within
    - Utilized Razor Pages for a simplified approach to build the UI and handle server-side logic.
    - Entity Framework Core was chosen to handle database interactions, making it easy to map C# classes to the PostgreSQL database.
    - The use of Bootstrap ensures the application is responsive and visually clean.
-   - I decided to go with dropdowns for some of the data/inputs that should ideally have fixed values
-   - I made some extra functionality to sort even further handling if no sort is picked we go by date and gave the user some additional options
+  
 
 ---
 
